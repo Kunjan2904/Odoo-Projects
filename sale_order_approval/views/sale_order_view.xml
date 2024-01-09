@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header> 
+                <button name="approve_button" string="Approve" class="btn-primary" type="object" attrs="{'invisible': [('state','!=','waiting_for_approval')]}"/>
+                <button name="action_cancel" string="Reject" type="object" attrs="{'invisible': [('state','!=','waiting_for_approval')]}"/>
+            </header>
+            
+           <!--  <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale"/>
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="action_sale_order_approval" model="ir.actions.act_window">
+        <field name="name">Waiting For Approval</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','waiting_for_approval')]</field>
+    </record>
+
+    <menuitem 
+        id="menu_action_sale_order_approval"
+        name="Waiting For Approval"
+        parent="sale.sale_order_menu" 
+        action="action_sale_order_approval"/>
+
+</odoo>

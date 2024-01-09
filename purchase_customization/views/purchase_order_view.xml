@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.view.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_append" string="Append" type="object" class="btn-primary" attrs="{'invisible':[('state','!=','purchase')]}" groups="purchase_customization.access_purchase_order_append"/>
+                <button name="action_confirm_append" string="Confirm Append" type="object" class="btn-primary" attrs="{'invisible':[('state','!=','append')]}"/>
+            </header>
+            <form>
+                <group>
+                    <field name="date_planned"  attrs="{'readonly':[('state','in','purchase')]}"/>
+                </group>
+            </form>
+
+           <!--  <xpath expr="//tree/field[@name='price_subtotal']" position="before">
+                <field name="discount_amount"/>
+            </xpath>
+
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <field name="total_discount"/>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='discount_amount']" position="before">
+                <field name="discount"/>
+            </xpath> -->
+        </field>
+    </record>
+</odoo>

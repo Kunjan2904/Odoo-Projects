@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="form_template" name = "res_data">
+        <t t-call="website.layout">
+            <div class="container p-3">
+                <form action="/form/submit" method='post' enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <span><b>Name: </b><input type="text" name="name" /></span><br/><br/>
+                    <span><b>Address: </b><input type="text" name="street"/></span><br/><br/>
+                    <span><b>Phone: </b><input type="text" name="phone"/></span><br/><br/>
+                    <span><b>Email: </b><input type="text" name="email"/></span><br/><br/>
+                    <label for="country_id"><b>Choose a Country: </b></label>
+                    <select name='country_id' id="country">
+                        <t t-foreach="data" t-as="element">
+                            <option t-att-value="element.id"><t t-out="element.name"/></option>
+                        </t>
+                    </select><br/><br/>
+                    <button type="submit">Submit</button><br/><br/>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="thank_you" name = "res_data">
+        <t t-call="website.layout">
+            <h1>Thank you</h1>    
+        </t>
+    </template>
+</odoo>

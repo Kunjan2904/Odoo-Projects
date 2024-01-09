@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="discount_applies_to"/>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="discount_method"  attrs="{'column_invisible': [('parent.discount_applies_to', '!=', 'order_line')]}"/>
+                 <field name="discount_amount" attrs="{'column_invisible': [('parent.discount_applies_to', '!=', 'order_line')]}"/>
+            </xpath>
+
+            <!-- <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <field name="discount" required="True"/>
+            </xpath> -->
+
+            <xpath expr="//field[@name='note']" position="after">
+                <group>
+                    <field name="discount_method" attrs="{'invisible': [('discount_applies_to', '!=', 'global')]}"/>
+                    <field name="discount_amount" attrs="{'invisible': [('discount_applies_to', '!=', 'global')]}"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='product_id']" position="before">
+                <field name="product_category_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
