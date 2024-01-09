@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <strong>Discount Applies To : </strong> <br/><p class="m-0" t-field="doc.discount_applies_to"/>
+        </xpath>
+
+       <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[@name='th_description']" position="after">
+            <t t-if="doc.discount_applies_to in ['order_line']">
+                <th name="th_discount_method" class="text-right">Discount Method</th>
+                <th name="th_discount_amount" class="text-right">Discount Amount</th>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[@name='so_total_summary']/div[@name='total']" position="after">
+            <t t-if="doc.discount_applies_to in ['global']">
+                <strong>Discount Method: </strong> <p t-field="doc.discount_method"/>
+                <strong>Discount Amount: </strong> <p t-field="doc.discount_amount"/>
+            </t>
+            <strong>Discount : </strong> <p t-field="doc.discount"/>
+        </xpath>
+        
+        <xpath expr="//table/tbody[hasclass('sale_tbody')]/t[2]/tr[1]/t[1]/td[@name='td_name']" position="after">
+            <t t-if="doc.discount_applies_to in ['order_line']">
+                <td name="td_discount_method" class="text-right">
+                    <span t-field="line.discount_method"/>
+                </td>
+                <td name="td_discount_amount" class="text-right">
+                    <span t-field="line.discount_amount"/>
+                </td>
+            </t>
+        </xpath>   
+    </template>
+</odoo>

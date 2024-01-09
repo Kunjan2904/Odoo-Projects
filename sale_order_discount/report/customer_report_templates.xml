@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_customer_detail">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page" style="border:1px solid black">
+                        <h1 align="center"><u>Customer Details</u></h1>
+                        <p><b>Name:</b> <span t-field="o.name"/></p>
+                        <img t-att-src="image_data_uri(o.image_1024)" class="float-right"/>
+                        <p><b>Address:</b> <span t-field="o.street"/></p>
+                        <p><b>Phone:</b> <span t-field="o.phone"/></p>
+                        <p><b>Mobile:</b> <span t-field="o.mobile"/></p>
+                        <p><b>Email:</b> <span t-field="o.email"/></p>
+                        <p><b>Website:</b> <span t-field="o.website"/></p>
+                        <t t-if="o.parent_id">
+                            <h3>Contact Information(Parent Partner) :</h3>
+                            <span t-field="o.parent_id.name"/><br/>
+                        </t>
+                        <t t-else="">
+                            <h3>Contact Information(Child Partner) :</h3>
+                            <t t-foreach="o.child_ids" t-as="c">
+                                <span t-field="c.name"/><br/>
+                            </t>
+                        </t>  
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_customer" model="ir.actions.report">
+        <field name="name">Customer Details</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_order_discount.report_customer_detail</field>
+        <field name="report_file">sale_order_discount.report_customer_detail</field>
+        <field name="print_report_name">'Customer Detail'</field>
+    </record>
+
+    <template id="custom_sale_layout">
+        <div class="header">
+            <div class="row" style="report_header_style;text-align:right;">
+                
+            </div>
+        </div>
+        <div class="article o_report_layout_standard">
+            <t t-out="0"/>
+        </div>
+        <div class="footer o_standard_footer">
+            <div class="row">
+                <img src="/sale_order_discount/static/src/img/logo.png" alt="Nothing" width="50" height="100"/>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_custom_saleorder">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="sale_order_discount.custom_sale_layout">
+                    <h1>Hello Hii!!!!!</h1>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_custom_sale_report" model="ir.actions.report">
+        <field name="name">Custom Sale Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_order_discount.report_custom_saleorder</field>
+        <field name="report_file">sale_order_discount.report_custom_saleorder</field>
+        <field name="print_report_name">'Sale Custom Report'</field>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
