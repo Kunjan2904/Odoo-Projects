@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="merge_purchase_order_form_view" model="ir.ui.view">
+		<field name="name">merge.purchase.order.form.view</field>
+		<field name="model">purchase.order.merger</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="merge_type"/>
+						<field name="purchase_type"/>
+					</group>
+				</group>
+
+				<footer>
+					<button string="Merge Orders" type="object" name="action_merge_orders"
+						class="oe_highlight"/>
+					<button string="Cancel" special="cancel" class="btn btn-secondary"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="purchase_order_merge_action" model="ir.actions.act_window">
+		<field name="name">Purchase Order Merge Wizard</field>
+		<field name="res_model">purchase.order.merger</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="practice_module.merge_purchase_order_form_view"/>
+		<field name="target">new</field>
+		<field name="binding_model_id" ref="purchase.model_purchase_order"/>
+		<field name="binding_view_types">list,form</field>
+	</record>
+
+	<record id="model_purchase_action_merge_order" model="ir.actions.server">
+            <field name="name">Merge Order</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_merge_purchase_orders</field>
+        </record>
+
+</odoo>

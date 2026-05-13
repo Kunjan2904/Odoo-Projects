@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+practice_module.access_sale_order_history_wizard,access_sale_order_history_wizard,practice_module.model_sale_order_history_wizard,base.group_user,1,1,1,1
+practice_module.access_practice_sale,access_practice_sale,practice_module.model_practice_sale,base.group_user,1,1,1,1
+practice_module.access_purchase_order_merger,access_purchase_order_merger,practice_module.model_purchase_order_merger,base.group_user,1,1,1,1

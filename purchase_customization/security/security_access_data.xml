@@ -1,0 +1,5 @@
+<odoo>
+	<record id="access_purchase_order_append" model="res.groups">
+		<field name="name">Purchase / Append</field>
+	</record>
+</odoo>

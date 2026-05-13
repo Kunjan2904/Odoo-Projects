@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="practice_sale_tree_view" model="ir.ui.view">
+		<field name="name">practice.sale.tree.view</field>
+		<field name="model">practice.sale</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="from_date"/>
+				<field name="to_date"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="practice_sale_form_view" model="ir.ui.view">
+		<field name="name">practice.sale.form.view</field>
+		<field name="model">practice.sale</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+                	<button name="search_button" type="object" string="Test Button" class="btn-primary"/>
+                	<button name="read_button" type="object" string="Read Button" class="btn-primary"/>
+            	</header>
+				<sheet>	
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="from_date"/>
+							<field name="to_date"/>
+							<field name="partner_id"/>
+							<field name="phone"/>
+							<field name="email"/>
+							<field name="address"/>
+							<field name="amount"/>
+							<field name="total"/>
+							<field name="company_name"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="action_sale_practice">
+        <field name="name">Sale Order Practice</field>
+        <field name="res_model">practice.sale</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_sale_practice"
+        name="Sale Order Practice"
+        parent="sale.sale_menu_root"
+        action="action_sale_practice"/>
+
+</odoo>

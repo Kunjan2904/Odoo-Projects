@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="group_custom_material_category" model="ir.module.category">
+		<field name="name">MATERIAL PURCHASE REQUISITIONS</field>
+	</record>
+
+	<record id="access_material_purchase_group" model="res.groups">
+		<field name="name">Purchase Requisitions Department Manager</field>
+		<field name="category_id" ref="practice_module.group_custom_material_category"/>
+	</record>
+
+	<record id="access_material_purchase_extra_group" model="res.groups">
+		<field name="name">Purchase Requisitions User</field>
+		<field name="category_id" ref="practice_module.group_custom_material_category"/>
+	</record>
+</odoo>

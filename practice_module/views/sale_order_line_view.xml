@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_tree_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <tree>
+                <header>
+                    <button name="test" string="Test" type="object" class="btn-primary"/>
+                </header>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='price_subtotal']" position="after">
+                <button name="action_show_history" string="Show History" type="object" class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="replace">
+                <field name="demo_name"/>
+            </xpath>
+            <xpath expr="//field[@name='demo_name']" position="attributes">
+                <attribute name="string">NAME</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="context">{'search_default_my_quotation': 1,'search_default_salesperson':1}</field>
+    </record>
+</odoo>

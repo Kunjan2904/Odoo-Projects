@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_referral_application_tree_view" model="ir.ui.view">
+		<field name="name">hr.referral.application.tree.view</field>
+		<field name="model">hr.referral.application</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="email"/>
+				<field name="referral_name_id"/>
+				<field name="degree_id"/>
+				<field name="department_id"/>
+				<field name="expected_salary"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="hr_referral_application_form_view" model="ir.ui.view">
+		<field name="name">hr.referral.application.form.view</field>
+		<field name="model">hr.referral.application</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<field name="stage" widget="statusbar"/>
+					<button name="action_approved" string="Approved" type="object" class="btn-primary" attrs="{'invisible':[('stage','in',('approved','cancel'))]}"
+						groups="referral_application.group_recruitment"/>
+					<button name="action_cancel" string="Cancel" type="object" class="btn-primary" attrs="{'invisible':[('stage','in',('cancel','approved'))]}"/>
+					<button name="action_create_application" string="Create Application" type="object" class="btn-primary" attrs="{'invisible':[('stage','in',('draft','cancel'))]}"/>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="email"/>
+							<field name="referral_name_id"/>
+							<field name="expected_joining_date"/>
+						</group>
+						<group>
+							<field name="degree_id"/>
+							<field name="department_id"/>
+							<field name="expected_salary"/>
+							<field name="summary"/>
+						</group>
+					</group>	
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="hr_referral_application_search_view" model="ir.ui.view">
+		<field name="name">hr.referral.application.search.view</field>
+		<field name="model">hr.referral.application</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name"/>
+				<field name="email"/>
+				<field name="referral_name_id"/>
+			</search>
+		</field>
+	</record>
+
+	<record id="action_hr_referral_application" model="ir.actions.act_window" >
+		<field name="name">HR Referral Application</field>
+		<field name="res_model">hr.referral.application</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem 
+		id="menu_hr_referral_application"
+		name="Referral Application" 
+		action="action_hr_referral_application"/>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_history_wizard_form_view" model="ir.ui.view">
+        <field name="name">project.history.wizard.form.view</field>
+        <field name="model">project.history.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date">
+                    </group>
+                </group>
+                <footer>
+                    <button string="Show" type='object' name='action_show_project_history' class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_project_history" model="ir.actions.act_window">
+        <field name="name">Project History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.history.wizard</field>
+        <field name="view_id" ref="project_history_wizard_form_view"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

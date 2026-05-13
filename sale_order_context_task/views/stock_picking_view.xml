@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.view.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="shipping_cost" invisible="context.get('hide_shipping_cost')"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock.action_picking_tree_all" model="ir.actions.act_window">
+        <field name="context">{'contact_display': 'partner_address', 'default_company_id': allowed_company_ids[0], 'hide_shipping_cost': 1}</field>
+    </record>
+
+</odoo>

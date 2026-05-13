@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Make Server Action for Combine Quotation and Delete Other -->
+    <record id="model_purchase_order_combine_draft_delete_others" model="ir.actions.server">
+        <field name="name">Merge Purchase Order</field>
+        <field name="model_id" ref="practice_module.model_purchase_order"/>
+        <field name="binding_model_id" ref="practice_module.model_purchase_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_combine_draft()</field>
+    </record>
+
+    <!-- <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="context">{'quotation_only': True,'search_default_approved':1}</field>
+    </record> -->
+
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="context">{'quotation_only': True,'search_default_vendor':1}</field>
+    </record>  
+</odoo>

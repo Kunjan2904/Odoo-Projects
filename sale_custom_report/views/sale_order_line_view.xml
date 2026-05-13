@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_id']" position="after">
+                <field name="line_number"/>
+            </xpath>
+        </field>
+    </record> -->
+
+   <!--  <record id="sale.product_template_action" model="ir.actions.act_window">
+        <field name="context">{"search_default_filter_to_sell":1, "sale_multi_pricelist_product_template": 1,'search_default_categ_id':1}</field>
+    </record> -->
+
+    <record id="stock.product_template_action_product" model="ir.actions.act_window">
+        <field name="context">{"search_default_consumable": 1, 'default_detailed_type': 'product','search_default_categ_id':1}</field>
+    </record>   
+
+    <!-- <record id="product_template_search_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.search.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="attributes">
+                <attribute name="filter_domain">[()]</attribute>
+            </xpath> 
+        </field>
+    </record> -->
+</odoo>
